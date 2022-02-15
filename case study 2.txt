@@ -1,0 +1,140 @@
+import java.util.Scanner;
+
+abstract class Item{     
+	private int NoOfCop;
+	private String T;
+	private int IDN;
+	
+	public abstract void Item();
+	public int getIDN() {
+		return IDN;
+	}
+	public void setIDN(int IDN) {
+		this.IDN = IDN;
+	}
+	public String getT() {
+		return T;
+	}
+	public void setT(String T) {
+		this.T = T;
+	}
+	public int getNoOfCop() {
+		return NoOfCop;
+	}
+	public void setNoOfCop(int NoOfCop) {
+		this.NoOfCop = NoOfCop;
+	}
+	
+	public void addItem()
+	{
+		System.out.println("Add More Items");
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Input the UID No.:");
+		int NewUID = sc.nextInt(); 
+				
+		System.out.println("Input the name of Book:");
+		String newT = sc.next();
+		
+		System.out.println("Input the Number of Copies:");
+		int NoCP= sc.nextInt();
+		
+		System.out.println(" Name of the book is:"+newT+" of Id Number is:"+NewUID+" and number of Available books are:"+NoCP);
+	}
+		
+	void Sell()
+	{
+		this.NoOfCop = this.NoOfCop - 1;
+		System.out.println("Available after Sell:"+NoOfCop);
+	}
+	
+	void Buy()
+	{
+		this.NoOfCop = this.NoOfCop + 1;
+		System.out.println("Available after Buy:" +NoOfCop);
+	}
+	
+	
+	
+	
+}
+
+
+abstract class WrittenItem extends Item                                               //subclass of Item
+{                                          
+	
+	String AuNam ="Robert Kiosky" ;
+	String GernTyp="Finnace";
+	String origin ="USA";
+	
+
+	
+	@Override
+	public void Item()
+	{
+		System.out.println(AuNam+" has write this book which is a self taught "+GernTyp+" book originated in "+origin);
+	}
+	
+}
+
+class Book extends WrittenItem                                                                 //subclass of WrittenItem
+{         
+	void yearOfBook()
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter book published year ");
+		int yearPublished = sc.nextInt(); 
+		
+		System.out.println("the year of the book published by author "+AuNam+" is " +yearPublished);
+	}
+	
+}
+
+class JournalPaper extends WrittenItem
+{
+	public JournalPaper()
+	{
+	}
+	
+}
+
+abstract class MediaItem extends Item                                                     
+{
+	public void Item()
+	{
+	}	
+}
+
+class Video extends MediaItem
+{                                                          
+	public Video()
+	{
+	}
+}
+
+public class CD extends MediaItem 
+{
+	public CD()
+	{
+	}
+	public static void main(String[] args) 
+	{
+		
+		CD ObjC = new CD();
+		Book ObjB= new Book();
+		
+		ObjC.setIDN(1);
+		ObjC.setNoOfCop(90);
+		ObjC.setT("NN");
+		
+		ObjC.addItem();
+		ObjC.Item();
+		ObjC.Buy();
+		
+		
+		ObjB.Item();
+		ObjB.yearOfBook();
+		
+	}
+}
